@@ -15,13 +15,12 @@ import json
 
 st.session_state.update(st.session_state)
 
-
+# path = os.path.dirname(__file__)
 
 mapbox_api_key = "pk.eyJ1Ijoid2lsbGlhbmNrIiwiYSI6ImNsNmw0NWxreTA4NHkzbG10NTY1dzIxeHYifQ.syqfYgOWQrngNzdt2yKwfA"
 title_ID_str = "cl6l6mrir009215np8uteip1j"
 tilesize_pixels = "256"
 
-__file__ = '/Users/william/Desktop/capstone/Home.py'
 dir_name = os.path.abspath(os.path.dirname(__file__))
 
 location = os.path.join(dir_name,'census_tract_merge.csv')
