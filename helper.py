@@ -2,7 +2,6 @@ import numpy as np
 import folium 
 import streamlit as st
 import pydeck as pdk
-import pandas as pd 
 import geopandas as gpd
 import plotly.express as px 
 mapbox_api_key = "pk.eyJ1Ijoid2lsbGlhbmNrIiwiYSI6ImNsNmw0NWxreTA4NHkzbG10NTY1dzIxeHYifQ.syqfYgOWQrngNzdt2yKwfA"
