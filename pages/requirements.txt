@@ -2,6 +2,6 @@ python
 streamlit
 plotly
 pandas
-geopandas
+geopandas==0.11.1
 shapely
 streamlit_folium
