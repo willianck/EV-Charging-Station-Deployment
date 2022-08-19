@@ -180,7 +180,7 @@ class Choroplethmap():
         aliases.append(f"{self.selection}:")
         self.aliases = aliases
         self.scale = scale
-        self.zoom = 6
+        self.zoom = 8.5
 
     
     def center(self):

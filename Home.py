@@ -86,7 +86,7 @@ data_dicts = {'Level 2 Chargers only': 'level2',
 
 
 with st.container():
-    options = st.multiselect('For the EV stations, what type of chargers do you want to visualise',
+    options = st.multiselect('Select the type of chargers to visualise',
      ['Level 2 Chargers only','DC Fast Chargers only','Level 2 and DC Fast'],
      format_func=lambda x: option_map[x],key ='multiselect')
 
