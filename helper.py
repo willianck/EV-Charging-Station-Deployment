@@ -181,6 +181,7 @@ class Choroplethmap():
         aliases.append(f"{self.selection}:")
         self.aliases = aliases
         self.scale = scale
+        self.zoom = 6
 
     
     def center(self):
@@ -226,7 +227,7 @@ class Choroplethmap():
         # print(self.attributes)
         # st.write(self.attributes)
         x_map, y_map = self.center()
-        mainmap =  folium.Map(location=[x_map, y_map], zoom_start=10,tiles=f'https://api.mapbox.com/styles/v1/willianck/{title_ID_str}/tiles/{tilesize_pixels}/{{z}}/{{x}}/{{y}}@2x?access_token={mapbox_api_key}', attr="Mapbox")
+        mainmap =  folium.Map(location=[x_map, y_map], zoom_start=self.zoom,tiles=f'https://api.mapbox.com/styles/v1/willianck/{title_ID_str}/tiles/{tilesize_pixels}/{{z}}/{{x}}/{{y}}@2x?access_token={mapbox_api_key}', attr="Mapbox")
         # maps = self.add_choropleth()
         maps.add_to(mainmap)
     # folium.LayerControl().add_to(mainmap)

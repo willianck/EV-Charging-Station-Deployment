@@ -42,7 +42,7 @@ st.sidebar.markdown("<div><h1 style='display:inline-block'>EV Analytics</h1><div
 st.sidebar.markdown("This dashboard is used to analyse EV and EV stations data")
 st.sidebar.markdown("To get started simply select an option from selection box")
 
-df =  pd.read_csv('/Users/william/Desktop/captsone/CS_merge.csv')
+df =  pd.read_csv('/Users/william/Desktop/capstone/CS_merge.csv')
 @st.cache(show_spinner=False,allow_output_mutation=True)
 def load_data():
 #  loading the different data set we need 
@@ -62,7 +62,7 @@ def load_data():
     cis_data.set_geometry(col='geometry', inplace=True)
     cs_data.set_geometry(col='geometry', inplace=True)
 
-    f = open('/Users/william/Desktop/captsone/connectors.json')
+    f = open('/Users/william/Desktop/capstone/connectors.json')
     connectors = json.load(f)
     # ct_data = ct_data.to_crs(epsg=3035)
     # cis_data = cis_data.to_crs(epsg=3035)
