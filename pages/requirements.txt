@@ -1,7 +1,6 @@
-python
-streamlit
-plotly
-pandas
+streamlit==1.12.0
+plotly==5.10.0
+pandas==1.4.3
 geopandas==0.11.1
-shapely
-streamlit_folium
+shapely==1.8.4
+streamlit_folium==0.6.14
