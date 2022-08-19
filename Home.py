@@ -7,7 +7,7 @@ import warnings
 from shapely.errors import ShapelyDeprecationWarning
 warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
 from helper import  ViewChargingStations, barchartplot
-import ast 
+import os.path
 import plotly.express as px 
 import json 
 
@@ -21,34 +21,29 @@ mapbox_api_key = "pk.eyJ1Ijoid2lsbGlhbmNrIiwiYSI6ImNsNmw0NWxreTA4NHkzbG10NTY1dzI
 title_ID_str = "cl6l6mrir009215np8uteip1j"
 tilesize_pixels = "256"
 
-def string_to_list(x):
-  if x!= "":
-    x = ast.literal_eval(x)
-    x = [n.strip() for n in x]
-  return x
+__file__ = '/Users/william/Desktop/capstone/Home.py'
+dir_name = os.path.abspath(os.path.dirname(__file__))
 
-def fill_connectors(conn,connectors):
-    if conn!="":
-      for x in conn:
-        connectors[x] = 1 + connectors.get(x,0)
+location = os.path.join(dir_name,'census_tract_merge.csv')
+location1 = os.path.join(dir_name,'counties_data_merge.csv')
+location2 = os.path.join(dir_name , 'CS_merge.csv')
+location3 = os.path.join(dir_name,'connectors.json')
+location4 = os.path.join(dir_name,'icon.png')
 
-
-
-
-st.title('Charging Stations')
-st.sidebar.image('/Users/william/Desktop/capstone/icon.png',width=100)
+st.title('Dashboard')
+st.sidebar.image(location4,width=100)
 st.sidebar.markdown("<div><h1 style='display:inline-block'>EV Analytics</h1><div>",unsafe_allow_html=True)
 # st.sidebar.markdown("<div><img src ='https://www.kindpng.com/imgv/ixwowhm_labor-analytics-icon-analytics-icon-png-transparent-png/' width=100 /><h1 style='display:inline-block'>EV Analytics</h1><div>",unsafe_allow_html=True)
 st.sidebar.markdown("This dashboard is used to analyse EV and EV stations data")
 st.sidebar.markdown("To get started simply select an option from selection box")
 
-df =  pd.read_csv('/Users/william/Desktop/capstone/CS_merge.csv')
+
 @st.cache(show_spinner=False,allow_output_mutation=True)
 def load_data():
 #  loading the different data set we need 
-    ct_data = pd.read_csv('/Users/william/Desktop/capstone/census_tract_merge.csv')
-    cis_data = pd.read_csv('/Users/william/Desktop/capstone/counties_data_merge.csv')
-    cs_data = pd.read_csv('/Users/william/Desktop/capstone/CS_merge.csv')
+    ct_data = pd.read_csv(location)
+    cis_data = pd.read_csv(location1)
+    cs_data = pd.read_csv(location2)
     ct_data = ct_data[ct_data['County'] == 'Los Angeles County']
 
     ct_data['geometry'] = ct_data['geometry'].apply(wkt.loads)
@@ -62,7 +57,7 @@ def load_data():
     cis_data.set_geometry(col='geometry', inplace=True)
     cs_data.set_geometry(col='geometry', inplace=True)
 
-    f = open('/Users/william/Desktop/capstone/connectors.json')
+    f = open(location3)
     connectors = json.load(f)
     # ct_data = ct_data.to_crs(epsg=3035)
     # cis_data = cis_data.to_crs(epsg=3035)
