@@ -7,7 +7,6 @@ import plotly.express as px
 mapbox_api_key = "pk.eyJ1Ijoid2lsbGlhbmNrIiwiYSI6ImNsNmw0NWxreTA4NHkzbG10NTY1dzIxeHYifQ.syqfYgOWQrngNzdt2yKwfA"
 title_ID_str = "cl6l6mrir009215np8uteip1j"
 tilesize_pixels = "256"
-
 style1 =f'https://api.mapbox.com/styles/v1/willianck/{title_ID_str}/tiles/{tilesize_pixels}/{{z}}/{{x}}/{{y}}@2x?access_token={mapbox_api_key}'
 
 LATITUDE_COLUMN = 'latitude'
@@ -133,7 +132,7 @@ class ViewChargingStations:
 
     def _deck(self):
         return pdk.Deck(
-            map_style="mapbox://styles/mapbox/light-v10",
+            map_style="mapbox://styles/mapbox/streets-v11",
             initial_view_state=self.view_state_component.view_state,
             layers=[self._scatter_plotter_layer()],
             tooltip={"html": 

@@ -2,13 +2,13 @@ import streamlit as st
 from Home import counties_data
 from helper import Choroplethmap , pairwiseplot
 from streamlit_folium import folium_static 
-st.session_state.update(st.session_state)
+# st.session_state.update(st.session_state)
 
-if 'viewmap' not in st.session_state:
-    st.session_state.viewmap = None
+# if 'viewmap' not in st.session_state:
+#     st.session_state.viewmap = None
 
-if 'viz' not in st.session_state:
-    st.session_state.viz =  None
+# if 'viz' not in st.session_state:
+#     st.session_state.viz =  None
 
 
 #  colours = { 'Neutral': 'rgb(128,128,128)',
@@ -30,7 +30,7 @@ attributes = {" EV Charging Station density ": "County_CS_count",
                 }
 
 selection = st.sidebar.radio("Which metric do you want to visualise ?", 
-            [" EV Charging Station density ", "Electric Vehicle density"])
+            [" EV Charging Station density ", "Electric Vehicle density"],key='selection_map')
 
 
 data = counties_data
@@ -54,18 +54,21 @@ scale = 10
 map = Choroplethmap(data,selection,attributes,style_function,highlight_function,fields,aliases,scale)
 
 with st.container():
-    if not st.session_state.viz:
-        st.session_state.viz = map.add_choropleth()
-    if not st.session_state.viewmap:
-        st.session_state.viewmap = map.show_map(st.session_state.viz)
+    viewmaps = map.add_choropleth()
+    resultmap = map.show_map(viewmaps)
+    # if not st.session_state.viz:
+    #     st.session_state.viz = map.add_choropleth()
+    # if not st.session_state.viewmap:
+    #     st.session_state.viewmap = map.show_map(st.session_state.viz)
 
-    folium_static(st.session_state.viewmap)
+    # folium_static(st.session_state.viewmap)
+    folium_static(resultmap)
 
 
 with st.container():
-    pairwiseplot(counties_data,'County_CS_count','num EVs','Number of charging stations','Number of EVs',st,'County_CS_count','County_CS_count')
+    pairwiseplot(counties_data,'num EVs','County_CS_count','Number of EVs','Number of charging stations',st,'num EVs','num EVs')
     
 
 with st.container():
-    pairwiseplot(counties_data,'County_CS_count','County population','Number of charging stations','Population',st,'County_CS_count','County_CS_count')
+    pairwiseplot(counties_data,'County population','County_CS_count','Population','Number of charging stations',st,'County_CS_count','County_CS_count')
 

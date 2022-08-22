@@ -6,13 +6,13 @@ mapbox_api_key = "pk.eyJ1Ijoid2lsbGlhbmNrIiwiYSI6ImNsNmw0NWxreTA4NHkzbG10NTY1dzI
 title_ID_str = "cl6l6mrir009215np8uteip1j"
 tilesize_pixels = "256"
 
-st.session_state.update(st.session_state)
+# st.session_state.update(st.session_state)
 
-if 'viewmap2' not in st.session_state:
-    st.session_state.viewmap2 = None
+# if 'viewmap2' not in st.session_state:
+#     st.session_state.viewmap2 = None
 
-if 'viz2' not in st.session_state:
-    st.session_state.viz2 =  None
+# if 'viz2' not in st.session_state:
+#     st.session_state.viz2 =  None
 
 st.title('Census Tract Los Angeles County')
 st.sidebar.markdown('# Census Tract #')
@@ -47,12 +47,15 @@ scale = 10
 map = Choroplethmap(data,selection,attributes,style_function,highlight_function,fields,aliases,scale)
 
 with st.container():
-    if not st.session_state.viz2:
-        st.session_state.viz2 = map.add_choropleth()
-    if not st.session_state.viewmap2:
-        st.session_state.viewmap2 = map.show_map(st.session_state.viz2)
+    viewmaps = map.add_choropleth()
+    resultmap = map.show_map(viewmaps)
+    # if not st.session_state.viz2:
+    #     st.session_state.viz2 = map.add_choropleth()
+    # if not st.session_state.viewmap2:
+    #     st.session_state.viewmap2 = map.show_map(st.session_state.viz2)
 
-    folium_static(st.session_state.viewmap2)
+    # folium_static(st.session_state.viewmap2)
+    folium_static(resultmap)
 
 
 with st.container():
